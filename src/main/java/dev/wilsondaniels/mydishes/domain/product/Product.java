@@ -1,6 +1,7 @@
 package dev.wilsondaniels.mydishes.domain.product;
 
 import dev.wilsondaniels.mydishes.domain.Entity;
+import dev.wilsondaniels.mydishes.domain.category.Category;
 import dev.wilsondaniels.mydishes.domain.validation.ValidationHandler;
 
 import java.util.Comparator;
@@ -34,6 +35,10 @@ public class Product extends Entity<String> implements Comparator<Product> {
         this.price = price;
         this.categoryId = categoryId;
         this.ownerId = ownerId;
+    }
+
+    public static Product newProduct(String title, String description, Double price, String categoryId, String ownerId) {
+        return new Product(UUID.randomUUID().toString(), title, description, price, categoryId, ownerId);
     }
 
     @Override

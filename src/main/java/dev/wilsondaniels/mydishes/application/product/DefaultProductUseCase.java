@@ -29,7 +29,7 @@ public class DefaultProductUseCase implements ProductUseCase {
 
         final var notification = Notification.create();
 
-        final var newProduct = aProduct.toEntity();
+        final var newProduct = Product.newProduct(aProduct.title(), aProduct.description(), aProduct.price(), aProduct.categoryId(), aProduct.ownerId());
 
         newProduct.validate(notification);
 

@@ -1,7 +1,5 @@
 package dev.wilsondaniels.mydishes.application.category;
 
-import dev.wilsondaniels.mydishes.domain.product.Product;
-
 import java.util.List;
 
 public interface CategoryUseCase {

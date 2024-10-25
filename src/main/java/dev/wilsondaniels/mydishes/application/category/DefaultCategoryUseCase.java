@@ -29,7 +29,7 @@ public class DefaultCategoryUseCase implements CategoryUseCase {
 
         final var notification = Notification.create();
 
-        final var newCategory = aCategory.toEntity();
+        final var newCategory = Category.newCategory(aCategory.title(), aCategory.description(), aCategory.ownerId());
 
         newCategory.validate(notification);
 

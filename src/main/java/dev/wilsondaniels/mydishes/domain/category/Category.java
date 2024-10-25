@@ -30,6 +30,10 @@ public class Category extends Entity<String> implements Comparator<Category> {
         this.ownerId = ownerId;
     }
 
+    public static Category newCategory(String title, String description, String ownerId) {
+        return new Category(UUID.randomUUID().toString(), title, description, ownerId);
+    }
+
     @Override
     public void validate(ValidationHandler handler) {
         new CategoryValidator(this, handler).validate();
