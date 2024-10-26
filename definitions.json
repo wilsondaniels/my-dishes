@@ -1,0 +1,8 @@
+{
+  "queues": [
+    {
+      "name": "my_dishes",
+      "durable": true
+    }
+  ]
+}

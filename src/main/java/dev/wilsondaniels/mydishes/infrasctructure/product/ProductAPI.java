@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping(value = "/{ownerid}/produtcts")
+@RequestMapping(value = "/{ownerid}/products")
 public interface ProductAPI {
 
     @PostMapping(

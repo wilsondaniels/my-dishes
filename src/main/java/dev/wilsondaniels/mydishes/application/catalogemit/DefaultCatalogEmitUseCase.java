@@ -33,9 +33,7 @@ public class DefaultCatalogEmitUseCase implements CatalogEmitUseCase {
     }
 
     @Override
-    public void refresh() {
-        final var anOwnerId = catalogEmitGateway.consume();
-
+    public void refresh(final String anOwnerId) {
         if (anOwnerId != null) {
             final var catalog = presentationCatalogGateway.create(anOwnerId, findCompleteCatalogByCategory(anOwnerId));
             upload(anOwnerId, catalog);
