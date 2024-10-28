@@ -7,7 +7,7 @@ import dev.wilsondaniels.mydishes.domain.validation.ValidationHandler;
 import java.util.Comparator;
 import java.util.UUID;
 
-public class Product extends Entity<String> implements Comparator<Product> {
+public class Product extends Entity<String> {
 
     private String title;
     private String description;
@@ -80,10 +80,5 @@ public class Product extends Entity<String> implements Comparator<Product> {
 
     public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
-    }
-
-    @Override
-    public int compare(Product o1, Product o2) {
-        return o1.getDescription().compareTo(o2.getDescription());
     }
 }

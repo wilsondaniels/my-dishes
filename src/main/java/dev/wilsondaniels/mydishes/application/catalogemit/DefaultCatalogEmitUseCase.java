@@ -1,7 +1,6 @@
 package dev.wilsondaniels.mydishes.application.catalogemit;
 
 import dev.wilsondaniels.mydishes.domain.catalogemit.BucketGateway;
-import dev.wilsondaniels.mydishes.domain.catalogemit.CatalogEmitGateway;
 import dev.wilsondaniels.mydishes.domain.catalogemit.PresentationCatalogGateway;
 import dev.wilsondaniels.mydishes.domain.category.Category;
 import dev.wilsondaniels.mydishes.domain.category.CategoryGateway;
@@ -13,19 +12,16 @@ import java.util.stream.Collectors;
 
 public class DefaultCatalogEmitUseCase implements CatalogEmitUseCase {
 
-    private final CatalogEmitGateway catalogEmitGateway;
     private final ProductGateway productGateway;
     private final CategoryGateway categoryGateway;
     private final PresentationCatalogGateway<String> presentationCatalogGateway;
     private final BucketGateway bucketGateway;
 
     public DefaultCatalogEmitUseCase(
-             CatalogEmitGateway catalogEmitGateway,
              ProductGateway productGateway,
              CategoryGateway categoryGateway,
              PresentationCatalogGateway presentationCatalogGateway,
              BucketGateway bucketGateway) {
-        this.catalogEmitGateway = Objects.requireNonNull(catalogEmitGateway);
         this.productGateway = Objects.requireNonNull(productGateway);
         this.categoryGateway = Objects.requireNonNull(categoryGateway);
         this.presentationCatalogGateway = Objects.requireNonNull(presentationCatalogGateway);
@@ -51,9 +47,12 @@ public class DefaultCatalogEmitUseCase implements CatalogEmitUseCase {
 
             Category category = categories.get(p.getCategoryId());
             if (category != null) {
-                final Set<Product> productsByCategory = catalogMap
-                        .putIfAbsent(category, new TreeSet<>());
-                productsByCategory.add(p);
+                Set<Product> products = catalogMap.get(category);
+                if (products == null) {
+                    products = new TreeSet<>();
+                    catalogMap.put(category, products);
+                }
+                products.add(p);
             }
         }
 

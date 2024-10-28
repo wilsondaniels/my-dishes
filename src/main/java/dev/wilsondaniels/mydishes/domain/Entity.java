@@ -4,7 +4,7 @@ import dev.wilsondaniels.mydishes.domain.validation.ValidationHandler;
 
 import java.util.Objects;
 
-public abstract class Entity<ID> {
+public abstract class Entity<ID extends Comparable<ID>> implements Comparable<Entity<ID>> {
 
     protected final ID id;
 
@@ -30,5 +30,10 @@ public abstract class Entity<ID> {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    @Override
+    public int compareTo(Entity<ID> o) {
+        return id.compareTo(o.getId());
     }
 }
