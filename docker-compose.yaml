@@ -34,10 +34,11 @@ services:
 
   minio:
     image: minio/minio
-    container_name: minio
+    container_name: meuminio
     environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadmin
+      MINIO_ROOT_USER: meuminio
+      MINIO_ROOT_PASSWORD: meuminio123
     ports:
       - "9000:9000"
+      - "33345:33345"
     command: server /data
